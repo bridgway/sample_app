@@ -8,15 +8,15 @@ describe "User pages" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
 
-    it { should have_content(user.name) }
-    it { should have_title(user.name) }
+    it { should have_selector('h1',    text: user.name) }
+    it { should have_selector('title', text: user.name) }
   end
 
   describe "signup page" do
     before { visit signup_path }
 
-    it { should have_content('Sign up') }
-    it { should have_title(full_title('Sign up')) }
+    it { should have_selector('h1',    text: 'Sign up') }
+    it { should have_selector('title', text: full_title('Sign up')) }
   end
 
   describe "signup" do
@@ -33,7 +33,7 @@ describe "User pages" do
         describe "after submission" do
         before { click_button submit }
 
-        #it { should have_selector('title', text: 'Sign up') } #not returning true for some reason even tho manual check shows working
+        it { should have_selector('title', text: 'Sign up') } 
         it { should have_content('error') }
       end
 
@@ -56,11 +56,11 @@ describe "User pages" do
 
         let(:user) { User.find_by_email('user@example.com') }
 
-        before { visit user_path(user) } #should now be on users page
+        #before { visit user_path(user) } #should now be on users page
 
-        #it { should have_selector('title', text: user.name) }
-        #it { should have_selector('div.alert.alert-success', text: 'Welcome') }
-        it { should have_content('Example') }  #this works fine   
+        it { should have_selector('title', text: user.name) }
+        it { should have_selector('div.alert.alert-success', text: 'Welcome') } 
+        it { should have_link('Sign out') } 
       end
     end
   end

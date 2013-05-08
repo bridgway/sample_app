@@ -18,7 +18,8 @@ end
 
 group :test do
   gem 'selenium-webdriver', '2.0'
-  gem 'capybara', '2.1.0.beta1'
+  gem 'capybara', '1.1.2'
+  gem 'launchy'
   gem 'factory_girl_rails', '4.2.0'
   gem 'cucumber-rails', '1.3.0', :require => false
   gem 'database_cleaner', github: 'bmabey/database_cleaner'
